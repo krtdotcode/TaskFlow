@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddTaskView() {
+function AddTaskView({ addTask }) {
   return (
     <div>
       <h1>Add Task Form</h1>

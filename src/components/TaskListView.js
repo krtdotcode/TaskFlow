@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TaskListView() {
+function TaskListView({ tasks, deleteTask }) {
   return (
     <div>
       <h1>Task List</h1>
