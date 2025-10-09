@@ -8,7 +8,8 @@ import AddTaskView from './components/AddTaskView';
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (taskDetails) => {
+  const addTask = async (taskDetails) => {
+    await new Promise(resolve => setTimeout(resolve, 800)); // simulate processing time
     const newTask = { ...taskDetails, id: Date.now() };
     setTasks([...tasks, newTask]);
   };

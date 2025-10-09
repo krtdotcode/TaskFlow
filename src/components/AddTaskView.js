@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function AddTaskView({ addTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('Medium');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addTask({ title, description, priority });
+    setIsLoading(true);
+    await addTask({ title, description, priority });
     navigate('/');
   };
 
@@ -54,8 +56,22 @@ function AddTaskView({ addTask }) {
               </Form.Select>
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="me-2">
-              Add Task
+            <Button variant="primary" type="submit" disabled={isLoading} className="me-2">
+              {isLoading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="me-2"
+                  />
+                  Saving Task...
+                </>
+              ) : (
+                'Add Task'
+              )}
             </Button>
             <Button variant="secondary" onClick={() => navigate('/')}>
               Cancel

@@ -19,9 +19,13 @@ function TaskListView({ tasks, deleteTask }) {
     <Container>
       <Row className="justify-content-center">
         <Col md={8}>
-          <h1 className="mt-4 mb-4">Your Tasks</h1>
+          <h1 className="mt-4 mb-4 text-center">Your Tasks</h1>
           {tasks.length === 0 ? (
-            <p className="text-muted">No tasks yet. Add your first task!</p>
+            <Card className="text-center p-4">
+              <Card.Body>
+                <Card.Text className="text-muted">No tasks yet. Add your first task!</Card.Text>
+              </Card.Body>
+            </Card>
           ) : (
             <Row>
               {tasks.map((task) => (
